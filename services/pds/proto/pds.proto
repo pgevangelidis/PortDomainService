@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package pds;
+
+/*
+    The gRPC message Port has this minimalistic format
+    for the sake of the exercise. Since the specification
+    doesn't requires any process on the incoming data, 
+    apart from storing to the database, we simply care for the 
+    id and the content. 
+*/
+message Port {
+    string ID = 1;
+    bytes Content = 2;
+}
+
+message Empty {}
+
+/*
+    PortDomainService service will have only one rpc function
+    and that is InsertOrUpdate. The function will insert or update
+    the received message. 
+*/
+service PortService {
+    rpc InsertOrUpdate(Port) returns (Empty);
+}
